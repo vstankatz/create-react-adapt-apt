@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 
 export default function NewTopicForm(props) {
   let _title,
@@ -11,6 +12,7 @@ export default function NewTopicForm(props) {
       title: _title.value,
       author: _author.value,
       content: _content.value,
+      id: v4()
     })
     _title.value = '';
     _author.value = '';
