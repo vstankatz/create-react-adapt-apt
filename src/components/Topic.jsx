@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Topic extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+function Topic (props) {
+
+  const upvote = () => {
+    console.log(`props.id ${props.id}`);
+    props.topicListOnVote(props.id, 1);
   }
 
-  handleClick() {
-    this.props.topicListOnVote();
-  };
+  const downvote = () => {
+    console.log(`props.id ${props.id}`);
+    props.topicListOnVote(props.id, -1);
+  }
 
-  render(){
     const issueDiv = {
-      border: '2px solid white',
+      border: '2px solid black',
       padding: '8px',
       borderRadius: '4px',
       textAlign: 'center',
@@ -31,17 +32,18 @@ class Topic extends React.Component {
     }
     return(
       <div style={issueDiv}>
-        <h1>Issue: {this.props.title}</h1>
+        <h1>Issue: {props.title}</h1>
+        <p>votes: {props.votes}</p>
         <hr style={titleHR}/>
-        <p>{this.props.content}</p>
-        <p>submitted by: <span style={italics}>{this.props.author}</span></p>
-        <p onClick={this.handleClick}>Upvote </p>
+        <p>{props.content}</p>
+        <p>submitted by: <span style={italics}>{props.author}</span></p>
+        <p onClick={upvote}>Upvote </p>
+        <p onClick={downvote}>Downvote </p>
       </div>
     )
-  }
+
 }
 
 Topic.propTypes = {title: PropTypes.string, author: PropTypes.string, content: PropTypes.string}
 
 export default Topic;
-// <p onClick={this.downvote(props.id)}>Upvote {this.state.downvotes}</p>
