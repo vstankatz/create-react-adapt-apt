@@ -24,26 +24,36 @@ export default class App extends React.Component {
     });
   }
 
-  handleVote(id, modifier){
-    console.log('fuck jim');
+  handleVote = (id, modifier) => {
+    console.log('id: ', id);
+    console.log('modifier: ', modifier);
+    let ourList = this.state.masterTopicList.slice()
+    ourList.forEach((topic) => {
+      if (topic.id == id) {
+        topic.votes += modifier;
+      }
+    })
+    this.setState({
+      masterTopicList: ourList
+    });
   }
 
 
   render() {
-  return (
-    <div>
-    <Header/>
-    <Switch>
-    <Route exact path='/' render={()=>(<TopicList
-        topicList={this.state.masterTopicList}
-        onVote={this.handleVote}/> )} />
-    <Route path='/conflictresolution' component={ConflictResolution}></Route>
-    <Route exact path='/newtopic' render={() => (
-      <NewTopicFormControl
-        onNewTopicCreation={this.handleAddingNewTopic} />
-    )}/>
-    </Switch>
-    </div>
-  );
-}
-}
+    return (
+      <div>
+        <Header/>
+        <Switch>
+          <Route exact path='/' render={()=>(<TopicList
+              topicList={this.state.masterTopicList}
+              onVote={this.handleVote}/> )} />
+            <Route path='/conflictresolution' component={ConflictResolution}></Route>
+            <Route exact path='/newtopic' render={() => (
+                <NewTopicFormControl
+                  onNewTopicCreation={this.handleAddingNewTopic} />
+              )}/>
+            </Switch>
+          </div>
+        );
+      }
+    }
