@@ -10,6 +10,7 @@ export default function NewTopicForm(props) {
     e.preventDefault();
     props.onNewTopicCreation({
       title: _title.value,
+      votes: 0,
       author: _author.value,
       content: _content.value,
       id: v4()
