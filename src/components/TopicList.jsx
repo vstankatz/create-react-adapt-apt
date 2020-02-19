@@ -8,10 +8,10 @@ export default function TopicList(props) {
       title: "Why Jim Sucks",
       author: "Dwight Schrute",
       content: "He keeps putting my things in Jello",
-      id: 0
+      id: 0,
+      votes: 0
     }
   ]
-
 
   return(
     <div>
